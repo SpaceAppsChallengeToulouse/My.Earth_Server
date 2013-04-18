@@ -8,7 +8,7 @@ You will find the Earth Day challenge description here: [http://spaceappschallen
 
 ## Project description
 
-This is the server part of our Earth Day project. It provides a RESTful interface for structured data stored in MongoDB, comming from several open data sources.
+This is the server part of our Earth Day project. It provides a RESTful interface for structured data stored in MongoDB, coming from several open data sources.
 
 ## License
 
