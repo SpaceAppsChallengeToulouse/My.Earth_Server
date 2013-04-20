@@ -1,6 +1,7 @@
 class UrlMappings {
 
 	static mappings = {
-        "/point/$id?"(resource: "point")
+        "/marker/$id?"(resource: "marker")
+        "/markers"(controller: "marker", action: "list")
 	}
 }

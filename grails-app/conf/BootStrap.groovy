@@ -1,4 +1,5 @@
-import earthday.Point
+import earthday.Marker
+import grails.converters.JSON
 import grails.util.Environment
 
 class BootStrap {
@@ -14,13 +15,17 @@ class BootStrap {
 
             println "------------ Drop DB $dbName"
             db.dropDatabase()
-            println "------------ Create sample points"
-            [[40, 45, 50, 55], [80, 85, 90]].combinations().eachWithIndex { List location, index ->
-                new Point(name: "point-$index", location: location).save()
+            println "------------ Create sample markers"
+            [[40, 45, 50, 55], [80, 85, 90]].combinations().eachWithIndex { List coordinates, index ->
+                new Marker(data: index * 5, coordinates: coordinates).save()
             }
-            println "------------ Points in the DB"
-            Point.findAll().each { println it }
+            println "------------ Markers in the DB"
+            Marker.findAll().each { println it }
             println "---------------------------------------"
+        }
+
+        JSON.registerObjectMarshaller(Marker) {
+            [id: it.id, data: it.data, coordinates: [lon: it.coordinates[0], lat: it.coordinates[1]]]
         }
     }
 

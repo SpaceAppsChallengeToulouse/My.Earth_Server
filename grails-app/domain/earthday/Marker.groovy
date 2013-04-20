@@ -5,13 +5,13 @@ import groovy.transform.ToString
 
 @EqualsAndHashCode
 @ToString(includeNames=true)
-class Point {
+class Marker {
 
     String id
-    String name
-    List location
+    List coordinates
+    Double data
 
     static mapping = {
-        location geoIndex:true
+        coordinates geoIndex:true
     }
 }
