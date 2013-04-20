@@ -5,11 +5,10 @@ import groovy.transform.ToString
 
 @EqualsAndHashCode
 @ToString(includeNames=true)
-class Marker {
+class Point {
 
     String id
     List coordinates
-    Double data
 
     static mapping = {
         coordinates geoIndex:true
