@@ -1,7 +1,9 @@
 class UrlMappings {
 
 	static mappings = {
-        "/area/$id?"(resource: "area")
-        "/areas"(controller: "area", action: "list")
+        "/area"(controller: "area", parseRequest: true) {
+            action = [GET: "list", POST: "save"]
+        }
+        "/area/$id"(resource: "area")
 	}
 }

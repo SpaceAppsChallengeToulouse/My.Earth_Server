@@ -8,12 +8,13 @@ class BootStrap {
 
     def mongo
     def grailsApplication
+    def bootStrapService
 
     def init = { servletContext ->
+        def dbName = grailsApplication.config.grails.mongo.databaseName
         if (Environment.current == Environment.DEVELOPMENT) {
             //def springContext = WebApplicationContextUtils.getWebApplicationContext(servletContext)
 
-            def dbName = grailsApplication.config.grails.mongo.databaseName
             def db = mongo.getDB(dbName)
             println "------------ Drop DB $dbName"
             db.dropDatabase()
@@ -25,6 +26,10 @@ class BootStrap {
             println "------------ Markers in the DB"
             Point.findAll().each { println it }
             println "---------------------------------------"*/
+        }
+        if (Area.count() == 0) {
+            println "------------ populating DB $dbName"
+            bootStrapService.populate()
         }
 
         JSON.registerObjectMarshaller(Point) {
@@ -40,7 +45,7 @@ class BootStrap {
                 endDate: it.endDate.time,
                 type: it.type,
                 value: it.value,
-                points: it.points
+                points: it.points.sort{ it.id }
             ]
         }
     }
