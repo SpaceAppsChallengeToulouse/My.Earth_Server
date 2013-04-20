@@ -10,6 +10,8 @@ class Point {
     String id
     List coordinates
 
+    static belongsTo = [area: Area]
+
     static mapping = {
         coordinates geoIndex:true
     }

@@ -7,16 +7,12 @@ class AreaController {
     def areaService
 
     def save() {
-        if (params.points == null || params.type == null || params.value == null) {
-            render status: 400, text: "Error: Missing parameter"
-            return
-        }
         def area = new Area()
-        bindData(area, params, [include: ['type', 'value']])
+        bindData(area, params, [include: ['type', 'value', 'author', 'description']])
         try {
-            areaService.save(area, params.list('points'))
-        } catch (IllegalAccessException iae) {
-            render status: 400, text: iae.getMessage()
+            areaService.save(area, params.list('points'), params.startDate, params.endDate)
+        } catch (Exception e) {
+            render status: 400, text: e.getMessage()
             return
         }
         render status: 201, text: area as JSON, contentType: "application/json"

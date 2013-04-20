@@ -32,7 +32,16 @@ class BootStrap {
         }
 
         JSON.registerObjectMarshaller(Area) {
-            [id: it.id, value: it.value, type: it.type, points: it.points]
+            [
+                id: it.id,
+                author: it.author,
+                description: it.description,
+                startDate: it.startDate.time,
+                endDate: it.endDate.time,
+                type: it.type,
+                value: it.value,
+                points: it.points
+            ]
         }
     }
 
