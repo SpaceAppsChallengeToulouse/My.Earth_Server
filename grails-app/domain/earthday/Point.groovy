@@ -9,6 +9,7 @@ class Point {
 
     String id
     List coordinates
+    int order
 
     static belongsTo = [area: Area]
 

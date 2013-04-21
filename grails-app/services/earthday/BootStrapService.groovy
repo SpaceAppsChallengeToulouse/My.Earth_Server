@@ -33,8 +33,8 @@ class BootStrapService {
                     value: value
             )
             def points = []
-            GERS.each { coordinates ->
-                points << new Point(coordinates: [coordinates[1], coordinates[0]], area: area)
+            GERS.eachWithIndex { coordinates, index ->
+                points << new Point(coordinates: [coordinates[1], coordinates[0]], area: area, order: index)
             }
             area.points = points
             area.save()

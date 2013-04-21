@@ -31,13 +31,13 @@ class AreaService {
 
     private List<Point> extractPoints(inputPoints) {
         def points = []
-        inputPoints.each { Map inputPoint ->
-            points << extractPoint(inputPoint)
+        inputPoints.eachWithIndex { Map inputPoint, int index ->
+            points << extractPoint(inputPoint, index)
         }
         points
     }
 
-    private Point extractPoint(Map inputPoint) {
+    private Point extractPoint(Map inputPoint, int index) {
         def coordinates = inputPoint.coordinates
         if (!(coordinates?.lon instanceof Number) || !(coordinates?.lat instanceof Number)) {
             throw new IllegalArgumentException("Error: coordinates are missing or of wrong type")
@@ -47,6 +47,6 @@ class AreaService {
         if (lon < -180 || lat < -180 || lon > 180 || lat > 180) {
             throw new IllegalArgumentException("Error: coordinates must be between -180 and 180")
         }
-        new Point(coordinates: [lon, lat])
+        new Point(coordinates: [lon, lat], order: index)
     }
 }

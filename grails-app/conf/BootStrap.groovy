@@ -45,7 +45,7 @@ class BootStrap {
                 endDate: it.endDate.time,
                 type: it.type,
                 value: it.value,
-                points: it.points.sort{ it.id }
+                points: it.points.sort{ it.order }.unique()
             ]
         }
     }
