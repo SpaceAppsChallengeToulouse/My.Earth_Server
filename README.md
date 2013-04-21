@@ -24,6 +24,8 @@ This project uses awesome open source technologies:
 * Robin Coma
 * Alexia Delas
 * Nicolas Noullet
+* Stéphane Coué
+* Aditya Geria
 
 ## License
 
